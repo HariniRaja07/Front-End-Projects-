@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipcard Memory Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .card {
+            width: 100px;
+            height: 100px;
+            background-color: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 10px;
+            user-select: none;
+            overflow: hidden;
+        }
+        .card img {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        .hidden {
+            background-color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h2>Flipcard Memory Game</h2>
+    <h3>Score: <span id="score">0</span></h3>
+    <div class="game-board" id="gameBoard"></div>
+
+    <script>
+        let images = ['https://www.shutterstock.com/image-vector/flat-vector-cute-cartoon-panda-600nw-2343798945.jpg', 'https://www.shutterstock.com/image-vector/flat-vector-cute-cartoon-panda-600nw-2343798945.jpg', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5c6IoJU3FjI0SyGx5-FhOcG8tQA3gCr2klg&s', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWy33k3H3n3U7FyPPxjjbwmnbQzFSkD7F73w&s', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5c6IoJU3FjI0SyGx5-FhOcG8tQA3gCr2klg&s', 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZSUyMGNhdHxlbnwwfHwwfHx8MA%3D%3D', 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZSUyMGNhdHxlbnwwfHwwfHx8MA%3D%3D', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWy33k3H3n3U7FyPPxjjbwmnbQzFSkD7F73w&s'];
+        images = images.sort(() => 0.5 - Math.random());
+        let selectedCards = [];
+        let score = 0;
+        let gameBoard = document.getElementById("gameBoard");
+        let scoreDisplay = document.getElementById("score");
+
+        for (let i = 0; i < images.length; i++) {
+            let card = document.createElement("div");
+            card.className = "card hidden";
+            let img = document.createElement("img");
+            img.src = images[i];
+            card.appendChild(img);
+            gameBoard.appendChild(card);
+
+            card.onclick = function () {
+                if (selectedCards.length < 2 && card.classList.contains("hidden")) {
+                    card.classList.remove("hidden");
+                    img.style.display = "block";
+                    selectedCards.push(card);
+                }
+                if (selectedCards.length === 2) {
+                    setTimeout(function () {
+                        if (selectedCards[0].querySelector("img").src === selectedCards[1].querySelector("img").src) {
+                            selectedCards[0].remove();
+                            selectedCards[1].remove();
+                            score++;
+                            scoreDisplay.textContent = score;
+                        } else {
+                            selectedCards[0].classList.add("hidden");
+                            selectedCards[1].classList.add("hidden");
+                            selectedCards[0].querySelector("img").style.display = "none";
+                            selectedCards[1].querySelector("img").style.display = "none";
+                        }
+                        selectedCards = [];
+                    }, 500);
+                }
+            };
+        }
+    </script>
+</body>
+</html>
