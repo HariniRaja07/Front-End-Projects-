@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Booking Page
+        </title>
+    </head>
+    <body>
+        <style>
+		body {
+            background-image: url('https://www.shutterstock.com/image-illustration/modern-high-speed-train-on-260nw-95564419.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+			
+        }
+		</style>
+        <center>
+            <h1 "font-size:70px;text-align:center;color:white";>
+                WELCOME TO TRAIN BOOKING
+            </h1>
+            <form action="Payment.html">
+               <label>Passenger Name  </label>
+               <input type="text" placeholder="Enter the traveler’s name" required>
+               <br><br>
+               <label>Age</label>
+               <input type="text" placeholder="Enter passenger’s age" required>
+               <br><br>
+               <label>Gender  </label>
+               <input type="radio" name="gender" required>
+               <label>MALE</label>
+               <input type="radio" name="gender" required>
+               <label>FEMALE</label>
+               <input type="radio" name="gender" required>
+               <label>OTHERS</label>
+               <br><br>
+               <lable>DATE  OF  BIRTH  </lable>
+               <input type="date" id="tech" name="tech" required>
+               <br><br>
+               <label>Seat Preference</label>
+			   <select id="options">
+               <option value="" disabled selected>Select an option</option>
+			   <option value="1">First class</option>
+			   <option value="2">Second class</option>
+			   <option value="3">Third class</option>
+			   <option value="4">Normal</option>
+				
+    </select>
+	<br><br>
+			   <label>Select Seat </label>
+			   <input type="number" id="tech" name="tech" min="1" max="50" required>
+			   <br><br>
+
+               <input type="checkbox">
+               <label>TERMS AND CONDITIONS</label>
+               <br><br>
+			   <input type="checkbox">
+			   <label>Proceed to Payment</label>
+			   <br><br>
+
+               <input type="submit">
+
+
+            </form>
+		<h2 style="font-size:50px;text-align:center;color:green";>Finding Your Best Routes</h2>
+        <a style="font-size:40px;text-align:center;" href="http://maps.google.com/maps?showlabs=1">Google map</a>
+        </center>
+    </body>
+</html>
