@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html ng-app="healthApp">
+<head>
+  <meta charset="UTF-8" />
+  <title>Health Care Hub</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+  <script src="app.js"></script>
+  <style>
+    /* Reset */
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Dashboard layout */
+    .dashboard {
+      display: flex;
+      height: 100vh;
+      background: #f0f8ff;
+    }
+
+    /* Sidebar styling */
+    .sidebar {
+      width: 220px;
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px 15px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      /* Make sidebar scrollable if content grows */
+      overflow-y: auto;
+    }
+
+    .sidebar h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-weight: bold;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 15px;
+    }
+
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      display: block;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar ul li a:hover,
+    .sidebar ul li a.active {
+      background-color: #34495e;
+    }
+
+    /* Main content area */
+    .content {
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+      display: flex;
+      justify-content: center;  /* center horizontally */
+      align-items: center;      /* center vertically */
+      flex-direction: column;
+    }
+
+    /* Hero banner on front page */
+    .hero {
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      background-image: url('https://media.istockphoto.com/id/1437830105/photo/cropped-shot-of-a-female-nurse-hold-her-senior-patients-hand-giving-support-doctor-helping.jpg?s=612x612&w=0&k=20&c=oKR-00at4oXr4tY5IxzqsswaLaaPsPRkdw2MJbYHWgA=');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 50px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-start {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    /* Container for dashboard pages */
+    .container {
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="dashboard">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h3>Health Care Hub</h3>
+      <ul>
+        <li><a href="#!/" ng-class="{'active': isActive('/')}">Home</a></li>
+        <li><a href="#!/dashboard/home" ng-class="{'active': isActive('/dashboard/home')}">Dashboard Home</a></li>
+        <li><a href="#!/dashboard/diet" ng-class="{'active': isActive('/dashboard/diet')}">Diet Planner</a></li>
+        <li><a href="#!/dashboard/bmi" ng-class="{'active': isActive('/dashboard/bmi')}">BMI Calculator</a></li>
+        <li><a href="#!/dashboard/appointment" ng-class="{'active': isActive('/dashboard/appointment')}">Appointments</a></li>
+        <li><a href="#!/dashboard/tips" ng-class="{'active': isActive('/dashboard/tips')}">Health Tips</a></li>
+        <li><a href="#!/dashboard/calorie" ng-class="{'active': isActive('/dashboard/calorie')}">Calorie Counter</a></li>
+        <li><a href="#!/dashboard/about" ng-class="{'active': isActive('/dashboard/about')}">About Us</a></li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <div ng-view></div>
+    </div>
+
+  </div>
+
+  <script>
+
+    angular.module('healthApp').controller('SidebarController', function($scope, $location) {
+      $scope.isActive = function(viewLocation) {
+        return viewLocation === $location.path();
+      };
+    });
+  </script>
+
+</body>
+</html>
